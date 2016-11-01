@@ -1,0 +1,35 @@
+    <div ng-controller="TweetCtrl as tc">
+        <div class="jumbotron">
+            <h2>Gather information about a specific subject or person</h2>
+        </div>
+        <div>
+            <button ng-click="tc.getAllTweets()">RELOAD</button>
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Tweets...">
+                <hr>
+            </div>
+            <table id="tweet_list" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Tweet</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="tweet in tc.tweets | filter:searchText">
+                    <td>
+                        {{ tweet.name }}
+                    </td>
+                    <td>
+                        {{ tweet.text }}
+                    </td>
+                </tr>
+                <tr ng-hide="tc.tweets.length">
+                    <td colspan="3">
+                        <p class="text-center">No Tweets Found</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
